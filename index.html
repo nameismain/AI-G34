@@ -4,134 +4,59 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Group 23</title>
-
 <style>
 :root{
-  --bg:#0e1116;
-  --panel:#121826;
-  --text:#e5e7eb;
-  --muted:#a1a1aa;
-  --line:#1f2937;
-  --accent1:#93c5fd;
-  --accent2:#f0abfc;
-  --accent3:#fb7185;
-  --glass:rgba(255,255,255,0.06);
+  --bg:#0e1116; --panel:#121826; --text:#e5e7eb; --muted:#a1a1aa;
+  --line:#1f2937; --accent1:#93c5fd; --accent2:#f0abfc; --accent3:#fb7185;
 }
-
-html{ scroll-behavior:smooth; }
+html{scroll-behavior:smooth}
 body{
-  background:var(--bg);
-  color:var(--text);
+  margin:0; background:var(--bg); color:var(--text);
   font-family:"Segoe UI","Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif;
-  line-height:1.8;
-  -webkit-font-smoothing:antialiased;
-  -moz-osx-font-smoothing:grayscale;
-  margin:0;
+  line-height:1.8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
 }
-
-h1,h2,h3{ color:var(--text); letter-spacing:-0.2px; }
-h2{ border-bottom:none; margin:0 0 .35em 0; font-weight:700; }
-h3{ color:#cbd5e1; font-weight:600; }
-a{ color:var(--accent1); text-decoration:none; }
-a:hover{ color:#bfdbfe; }
-
-.wrap{ max-width:980px; margin:0 auto; padding:0 20px; }
-
+h1,h2,h3{color:var(--text); letter-spacing:-0.2px}
+h2{border-bottom:none; margin:0 0 .35em 0; font-weight:700}
+h3{color:#cbd5e1; font-weight:600}
+a{color:var(--accent1); text-decoration:none}
+a:hover{color:#bfdbfe}
+.wrap{max-width:980px; margin:0 auto; padding:0 20px}
 /* mini nav */
-.nav{
-  position:sticky; top:0; z-index:10;
-  background:rgba(14,17,22,0.85);
-  backdrop-filter:saturate(120%) blur(4px);
-  border-bottom:1px solid var(--line);
-}
-.nav-inner{
-  max-width:980px; margin:0 auto; padding:10px 20px;
-  display:flex; align-items:center; justify-content:center; gap:14px;
-  font-weight:600; color:#d1d5db;
-}
-.nav a{ color:#d1d5db; }
-.nav a:hover{ color:#ffffff; }
-.sep{ color:#6b7280; }
-
+.nav{position:sticky; top:0; z-index:10; background:rgba(14,17,22,.85);
+  backdrop-filter:saturate(120%) blur(4px); border-bottom:1px solid var(--line)}
+.nav-inner{max-width:980px; margin:0 auto; padding:10px 20px; display:flex; gap:14px; justify-content:center; align-items:center; font-weight:600; color:#d1d5db}
+.nav a{color:#d1d5db} .nav a:hover{color:#fff} .sep{color:#6b7280}
 /* section separator */
-hr{
-  height:2px; border:0; margin:2.2em 0;
-  background:linear-gradient(90deg, rgba(147,197,253,.4), rgba(240,171,252,.45), rgba(251,113,133,.35));
-  border-radius:2px;
-}
-
+hr{height:2px; border:0; margin:2.2em 0; background:linear-gradient(90deg, rgba(147,197,253,.4), rgba(240,171,252,.45), rgba(251,113,133,.35)); border-radius:2px}
 /* cards */
-.card{
-  background:linear-gradient(to bottom right, var(--panel), var(--bg));
-  border:1px solid var(--line);
-  border-radius:16px;
-  padding:20px;
-  box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02);
-}
-
+.card{background:linear-gradient(to bottom right, var(--panel), var(--bg)); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02)}
 /* table */
-.table{
-  width:100%;
-  border-collapse:collapse;
-  overflow:hidden;
-  border-radius:12px;
-  border:1px solid var(--line);
-}
-.table th,.table td{
-  padding:12px 14px; text-align:center; font-size:15px;
-  border-bottom:1px solid var(--line);
-}
-.table th{
-  background:linear-gradient(90deg, rgba(147,197,253,.12), rgba(240,171,252,.12));
-  color:#e2e8f0; font-weight:700;
-}
-.table tr:nth-child(even){ background:rgba(255,255,255,0.02); }
-.table tr:hover{ background:rgba(147,197,253,0.06); }
-
+.table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px; border:1px solid var(--line)}
+.table th,.table td{padding:12px 14px; text-align:center; font-size:15px; border-bottom:1px solid var(--line)}
+.table th{background:linear-gradient(90deg, rgba(147,197,253,.12), rgba(240,171,252,.12)); color:#e2e8f0; font-weight:700}
+.table tr:nth-child(even){background:rgba(255,255,255,.02)} .table tr:hover{background:rgba(147,197,253,.06)}
 /* tech badges */
-.badges{ text-align:center; }
+.badges{text-align:center}
 .badge{
-  display:inline-block; margin:6px; padding:10px 16px;
-  font-size:14px; font-weight:700; letter-spacing:.2px;
-  color:#f3f4f6; border-radius:999px;
-  background:linear-gradient(135deg, rgba(147,197,253,.22), rgba(240,171,252,.24));
-  border:1px solid rgba(148,163,184,.35);
-  box-shadow:0 8px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
-  backdrop-filter:saturate(120%) blur(2px);
-  transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border .25s ease;
+  display:inline-block; margin:6px; padding:10px 16px; font-size:14px; font-weight:700; letter-spacing:.2px;
+  color:#f3f4f6; border-radius:999px; background:linear-gradient(135deg, rgba(147,197,253,.22), rgba(240,171,252,.24));
+  border:1px solid rgba(148,163,184,.35); box-shadow:0 8px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+  backdrop-filter:saturate(120%) blur(2px); transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border .25s ease
 }
-.badge:hover{
-  transform:translateY(-3px);
-  background:linear-gradient(135deg, rgba(147,197,253,.35), rgba(240,171,252,.38));
-  box-shadow:0 14px 30px rgba(0,0,0,.5);
-  border-color:rgba(148,163,184,.6);
-}
-
-.lead{ font-size:16px; color:#d1d5db; }
-.muted{ color:var(--muted); }
-
+.badge:hover{transform:translateY(-3px); background:linear-gradient(135deg, rgba(147,197,253,.35), rgba(240,171,252,.38)); box-shadow:0 14px 30px rgba(0,0,0,.5); border-color:rgba(148,163,184,.6)}
+.lead{font-size:16px; color:#d1d5db} .muted{color:#a1a1aa}
 /* spacing */
-.section{ margin:1.2em 0; text-wrap:pretty; }
-.header{ text-align:center; }
+.section{margin:1.2em 0} .header{text-align:center}
 </style>
 </head>
-
 <body>
-
-<!-- mini navigation -->
-<div class="nav">
-  <div class="nav-inner">
-    <a href="#about">About</a>
-    <span class="sep">|</span>
-    <a href="#proposal">Proposal</a>
-    <span class="sep">|</span>
-    <a href="#contact">Contact</a>
-  </div>
-</div>
+<div class="nav"><div class="nav-inner">
+  <a href="#about">About</a><span class="sep">|</span>
+  <a href="#proposal">Proposal</a><span class="sep">|</span>
+  <a href="#contact">Contact</a>
+</div></div>
 
 <div class="wrap">
-
-  <!-- header -->
   <div class="section header">
     <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,100:111827&height=210&text=Group%2023&fontColor=ffffff&fontSize=60&fontAlignY=40" alt="header">
     <h3>Hanyang University - ITE351 AI and Applications</h3>
@@ -139,9 +64,8 @@ hr{
 
   <hr>
 
-  <!-- overview -->
   <div class="section" align="center">
-    <h2 style="color:var(--accent1);">Group 23 Project Overview</h2>
+    <h2 style="color:var(--accent1)">Group 23 Project Overview</h2>
     <p class="lead">
       Welcome to our official project space for the AI and Applications (ITE351) course at Hanyang University (Fall 2025).<br>
       This site includes our member report (Task 1), GitHub Pages setup (Task 2), and initial research proposal (Task 3).<br>
@@ -151,9 +75,8 @@ hr{
 
   <hr>
 
-  <!-- proposal -->
   <div id="proposal" class="section">
-    <h2 style="color:var(--accent2);">Project Proposal (Draft)</h2>
+    <h2 style="color:var(--accent2)">Project Proposal (Draft)</h2>
     <div class="card">
       <p>
         We plan to explore directions such as:<br>
@@ -167,9 +90,8 @@ hr{
 
   <hr>
 
-  <!-- methodology -->
   <div class="section">
-    <h2 style="color:var(--accent1);">Planned Methodology</h2>
+    <h2 style="color:var(--accent1)">Planned Methodology</h2>
     <div class="card">
       <ol>
         <li>Topic Selection - identify a meaningful AI problem (healthcare, environment, automation, etc.)</li>
@@ -183,40 +105,32 @@ hr{
 
   <hr>
 
-  <!-- tech stack -->
   <div class="section" align="center">
-    <h2 style="color:var(--accent1);">Tech Stack</h2>
+    <h2 style="color:var(--accent1)">Tech Stack</h2>
     <div class="badges">
-      <span class="badge">Figma</span>
-      <span class="badge">GitHub</span>
-      <span class="badge">Python</span>
-      <span class="badge">PyTorch</span>
-      <span class="badge">TensorFlow</span>
-      <span class="badge">Keras</span>
-      <span class="badge">MySQL</span>
+      <span class="badge">Figma</span><span class="badge">GitHub</span><span class="badge">Python</span>
+      <span class="badge">PyTorch</span><span class="badge">TensorFlow</span><span class="badge">Keras</span><span class="badge">MySQL</span>
     </div>
   </div>
 
   <hr>
 
-  <!-- about -->
   <div id="about" class="section">
-    <h2 style="color:var(--accent2);">About</h2>
+    <h2 style="color:var(--accent2)">About</h2>
     <div class="card">
-      <ul style="list-style-type:disc; padding-left:18px;">
+      <ul style="list-style-type:disc; padding-left:18px">
         <li><b>Minjin Kim</b> | Dept. of Information Systems | idid02@hanyang.ac.kr</li>
-        <li><b>Taehyun Kim</b> | Dept. of Computer Science</li>
-        <li><b>Lison</b> | Dept. of Information Systems</li>
-        <li><b>Tom</b> | Dept. of Information Systems</li>
+        <li><b>Taehyun Kim</b> | Dept. of Computer Science | example@example.com</li>
+        <li><b>Lison</b> | Dept. of Information Systems | lsn.olmp@gmail.com</li>
+        <li><b>Tom</b> | Dept. of Information Systems | example@example.com</li>
       </ul>
     </div>
   </div>
 
   <hr>
 
-  <!-- progress -->
   <div class="section">
-    <h2 style="color:var(--accent1);">Progress Log</h2>
+    <h2 style="color:var(--accent1)">Progress Log</h2>
     <table class="table">
       <tr><th>Task</th><th>Description</th><th>Status</th></tr>
       <tr><td>Task 1</td><td>Report group members</td><td>Completed</td></tr>
@@ -229,20 +143,18 @@ hr{
 
   <hr>
 
-  <!-- contact -->
   <div id="contact" class="section" align="center">
-    <h2 style="color:var(--accent1);">Contact</h2>
+    <h2 style="color:var(--accent1)">Contact</h2>
     <div class="badges">
-      <a href="#"><span class="badge" style="background:linear-gradient(135deg, rgba(2,6,23,.55), rgba(30,41,59,.55)); border-color:#334155;">Notion</span></a>
-      <a href="#"><span class="badge" style="background:linear-gradient(135deg, rgba(251,113,133,.38), rgba(244,114,182,.34));">Gmail</span></a>
-      <a href="#"><span class="badge" style="background:linear-gradient(135deg, rgba(147,197,253,.35), rgba(125,211,252,.28));">Hanyang Univ</span></a>
+      <a href="#"><span class="badge" style="background:linear-gradient(135deg, rgba(2,6,23,.55), rgba(30,41,59,.55)); border-color:#334155">Notion</span></a>
+      <a href="#"><span class="badge" style="background:linear-gradient(135deg, rgba(251,113,133,.38), rgba(244,114,182,.34))">Gmail</span></a>
+      <a href="#"><span class="badge" style="background:linear-gradient(135deg, rgba(147,197,253,.35), rgba(125,211,252,.28))">Hanyang Univ</span></a>
     </div>
   </div>
 
   <footer class="section muted">
     Last Updated: October 23, 2025 - Hanyang University - Dept. of Information Systems
   </footer>
-
 </div>
 </body>
 </html>
