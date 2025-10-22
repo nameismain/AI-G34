@@ -3,7 +3,7 @@
 Course project for Hanyang University (Fall 2025).
 
 ## Live Site
-https://uu-marina.github.io/AI-G23/
+https://nameismain.github.io/AI-G23/
 
 ## What’s Inside
 - index.html: website homepage (dark theme, mini navigation)
