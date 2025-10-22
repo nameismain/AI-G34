@@ -1,7 +1,9 @@
----
-layout: default
-title: Group 23
----
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Group 23</title>
 
 <style>
 :root{
@@ -24,10 +26,11 @@ body{
   line-height:1.8;
   -webkit-font-smoothing:antialiased;
   -moz-osx-font-smoothing:grayscale;
+  margin:0;
 }
 
 h1,h2,h3{ color:var(--text); letter-spacing:-0.2px; }
-h2{ border-bottom:none !important; margin:0 0 .35em 0 !important; font-weight:700; }
+h2{ border-bottom:none; margin:0 0 .35em 0; font-weight:700; }
 h3{ color:#cbd5e1; font-weight:600; }
 a{ color:var(--accent1); text-decoration:none; }
 a:hover{ color:#bfdbfe; }
@@ -108,8 +111,12 @@ hr{
 .muted{ color:var(--muted); }
 
 /* spacing */
-.section{ margin:1.2em 0; }
+.section{ margin:1.2em 0; text-wrap:pretty; }
+.header{ text-align:center; }
 </style>
+</head>
+
+<body>
 
 <!-- mini navigation -->
 <div class="nav">
@@ -125,9 +132,9 @@ hr{
 <div class="wrap">
 
   <!-- header -->
-  <div align="center" class="section">
-    <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,100:111827&height=210&text=Group%2023&fontColor=ffffff&fontSize=60&fontAlignY=40" alt="header" />
-    <h3>Hanyang University · ITE351 AI and Applications</h3>
+  <div class="section header">
+    <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,100:111827&height=210&text=Group%2023&fontColor=ffffff&fontSize=60&fontAlignY=40" alt="header">
+    <h3>Hanyang University - ITE351 AI and Applications</h3>
   </div>
 
   <hr>
@@ -165,11 +172,11 @@ hr{
     <h2 style="color:var(--accent1);">Planned Methodology</h2>
     <div class="card">
       <ol>
-        <li>Topic Selection – identify a meaningful AI problem (healthcare, environment, automation, etc.)</li>
-        <li>Data Collection and Preprocessing – find or create suitable datasets</li>
-        <li>Modeling – train and test models using Python and ML frameworks</li>
-        <li>Evaluation – analyze results and optimize performance</li>
-        <li>Documentation – publish updates on this GitHub Pages blog</li>
+        <li>Topic Selection - identify a meaningful AI problem (healthcare, environment, automation, etc.)</li>
+        <li>Data Collection and Preprocessing - find or create suitable datasets</li>
+        <li>Modeling - train and test models using Python and ML frameworks</li>
+        <li>Evaluation - analyze results and optimize performance</li>
+        <li>Documentation - publish updates on this GitHub Pages blog</li>
       </ol>
     </div>
   </div>
@@ -197,10 +204,10 @@ hr{
     <h2 style="color:var(--accent2);">About</h2>
     <div class="card">
       <ul style="list-style-type:disc; padding-left:18px;">
-        <li><b>김민진</b> | Dept. of Information Systems | idid02@hanyang.ac.kr</li>
-        <li><b>김태현</b> | Dept. of Computer Science | example@example.com</li>
-        <li><b>Lison</b> | Dept. of Information Systems | example@example.com</li>
-        <li><b>Tom</b> | Dept. of Information Systems | example@example.com</li>
+        <li><b>Minjin Kim</b> | Dept. of Information Systems | idid02@hanyang.ac.kr</li>
+        <li><b>Taehyun Kim</b> | Dept. of Computer Science</li>
+        <li><b>Lison</b> | Dept. of Information Systems</li>
+        <li><b>Tom</b> | Dept. of Information Systems</li>
       </ul>
     </div>
   </div>
@@ -233,7 +240,9 @@ hr{
   </div>
 
   <footer class="section muted">
-    Last Updated: October 23, 2025 · Hanyang University – Dept. of Information Systems
+    Last Updated: October 23, 2025 - Hanyang University - Dept. of Information Systems
   </footer>
 
 </div>
+</body>
+</html>
