@@ -10,7 +10,7 @@ https://uu-marina.github.io/AI-G23/
 - assets/: images and static files
 
 ## How to Update
-1) Edit index.md and commit to `main`
+1) Edit index.html and commit to `main`
 2) Pages will auto-publish to the Live Site URL
 
 ## Team
