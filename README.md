@@ -1,84 +1,101 @@
-# ITE351 – AI & Applications · Group 34
-Course project for **Hanyang University (Fall 2025)**  
-Instructor: Prof. YoungjoonWon 
-Team 34 — *PureCare: AI-Driven Symptom-Responsive Air Purifier*
+<h1 align="center">💨 PureCare · AI-Driven Symptom-Responsive Air Purifier</h1>
+<p align="center">
+  <b>ITE351 – AI & Applications · Group 34</b><br>
+  <i>Hanyang University, Fall 2025</i><br>
+  <a href="https://nameismain.github.io/AI-G34/">🌐 Live Site</a> · 
+  <a href="https://uumarina.notion.site/">🧠 Notion Workspace</a>
+</p>
 
 ---
 
-## 🌐 Live Site
-➡️ [https://nameismain.github.io/AI-G34/](https://nameismain.github.io/AI-G34/)
+## 🌿 Overview
+**PureCare** is an AI-powered air purification system that listens, learns, and adapts.  
+Instead of merely reacting to air quality levels, it uses **audio-based symptom recognition** —  
+detecting coughs and sneezes to provide **personalized, health-aware air management**.
+
+> 🩺 Turning air purifiers into proactive wellness companions.
 
 ---
 
-## 🧠 Project Overview
-**PureCare Air Purifier** is an AI-powered system designed to recognize **user health conditions** through **audio-based symptom detection**.  
-Unlike conventional purifiers that only react to air quality levels, PureCare *learns from real-world cough and sneeze sounds* and adapts its behavior intelligently — adjusting fan speed, purification mode, and scheduling to provide a **personalized, health-aware home environment**.
-
-> Goal: Transform air purifiers from passive devices into **proactive health companions**.
-
----
-
-## 📊 Project Proposal (Summary)
-
-### Objective
-Develop a smart air purifier that:
-- Detects coughs/sneezes via AI-based sound recognition  
-- Learns user-specific patterns and health cues  
-- Automatically adjusts operation based on real-time context  
-- Supports multi-user personalization within shared environments  
+## 🎯 Objectives
+- Develop an **AI model** capable of detecting coughs and sneezes in realistic indoor conditions.  
+- Learn **user-specific patterns** and link sound cues to health context.  
+- Automatically **adjust purification speed and mode** based on detected symptoms.  
+- Build an **edge-deployed prototype** using Raspberry Pi 4 for local, privacy-preserving inference.
 
 ---
 
-## 🧩 Planned Methodology
+## 🧪 Planned Methodology
 
-### 1. **Audio Data Collection**
-Following the paper *Acoustic Cues for Person Identification using Cough Sounds* (Tran et al.):
-- Each participant records **40 ten-second audio samples** (cough/sneeze)  
-- **5 recording sessions** on different days  
-- Conditions vary by:
-  - Physical activity before recording (rest, after walking/running/stairs)  
-  - Distance & position from microphone (0–3 m, various angles)  
-  - Body orientation relative to the device  
-  - Indoor background noise (quiet, TV, appliances, open windows)  
-- Recording tool: `hardware/tools/audio_capture.py` (fixed device position)
+### 1️⃣ Audio Data Collection
+Following *Acoustic Cues for Person Identification using Cough Sounds (Tran et al.)*  
+each participant records **40 ten-second samples** (coughs/sneezes) across **5 sessions** on different days.
 
-### 2. **Metadata & Labeling**
-Each sample logged in `notes.csv`:
+| Variable | Variations |
+|-----------|-------------|
+| **Physical State** | Rest · After walking · After running · After climbing stairs |
+| **Distance & Angle** | 0 – 3 m, multiple room positions |
+| **Body Orientation** | Facing / sideways / angled from mic |
+| **Environment** | Quiet · TV/music · Appliances · Open windows |
+
+> 🎙️ Recorded indoors using `hardware/tools/audio_capture.py`  
+> Device remains fixed to simulate a purifier placement.
+
+---
+
+### 2️⃣ Metadata & Labeling
+Each recording logged in **`notes.csv`** with:
 user_id, file_name, day, sample_no, is_cough, physical_activity, bg_noise, distance, cough_type
-Example:
-M1US20-01, manual_save_time1761366192.csv, 0, 3, 1, rest, music+window, 2m, throat_clearing
-Dataset supports both **symptom detection** and **user identification**.
+Example:  
+`M1US20-01, manual_save_time1761366192.csv, 0, 3, 1, rest, music+window, 2m, throat_clearing`
 
-### 3. **AI Model Development**
-- **Sound Recognition** – CNN trained on MFCC features to classify cough/sneeze vs noise  
-- **Adaptive Control** – Regression or reinforcement model to auto-adjust purifier behavior  
-- **User Identification** – Embedding & clustering to map new cough samples to known users  
-
-### 4. **Integration & Testing**
-- Deploy models on **Raspberry Pi 4**  
-- Local inference for privacy & low latency  
-- Evaluate in realistic indoor environments  
-
-### 5. **Evaluation & Optimization**
-- Metrics: detection accuracy, latency, false positives, energy efficiency  
-- Iterative retraining with new user data and feedback  
+Dataset supports both **symptom detection** and **person-identification research**.
 
 ---
 
-## 🧑‍💻 Tech Stack
-| Category | Tools |
-|-----------|-------|
-| Frontend | HTML, CSS (Dark Theme, Responsive), React |
-| Backend / AI | Python, TensorFlow, PyTorch, Keras |
-| Embedded | Raspberry Pi 4, audio sensors |
-| Data | NumPy, pandas, MFCC feature extraction |
-| Design & Docs | Figma, GitHub Pages, Notion |
+### 3️⃣ AI Model Development
+| Module | Description |
+|:--|:--|
+| **Sound Recognition** | CNN trained on MFCC features to classify cough/sneeze/background |
+| **Adaptive Control** | Regression / RL model to dynamically tune purifier speed and mode |
+| **User Identification** | Embedding + clustering to associate new coughs with existing users |
 
 ---
 
-## 👥 Team
-| Name | Department | Email |
-|------|-------------|-------|
+### 4️⃣ Integration & Testing
+- Deploy trained models to **Raspberry Pi 4**  
+- Perform **local real-time inference** to ensure low latency and privacy  
+- Evaluate with real indoor recordings and live user interaction  
+
+---
+
+### 5️⃣ Evaluation & Optimization
+| Metric | Description |
+|---------|-------------|
+| Accuracy | Symptom classification performance |
+| False Positives | Model reliability under background noise |
+| Latency | On-device inference time |
+| Energy Efficiency | Power use vs. baseline purifier |
+| User Feedback | Comfort / perceived responsiveness |
+
+---
+
+## 🧠 Tech Stack
+
+| Category | Tools & Frameworks |
+|-----------|-------------------|
+| **AI / ML** | Python · TensorFlow · PyTorch · Keras |
+| **Signal Processing** | Librosa · NumPy · pandas |
+| **Hardware** | Raspberry Pi 4 · USB mic sensors |
+| **Frontend / Docs** | HTML · CSS (Dark Theme) · GitHub Pages · Figma |
+| **Collaboration** | Notion · GitHub · Google Drive |
+
+---
+
+## 👥 Team 34
+
+| Name | Department | Contact |
+|------|-------------|---------|
 | **Minjin Kim** | Information Systems | idid02@hanyang.ac.kr |
 | **Taehyun Kim** | Computer Science | tanggu01@connect.hku.hk |
 | **Lison Olympie** | Computer Science | lsn.olmp@gmail.com |
@@ -86,10 +103,7 @@ Dataset supports both **symptom detection** and **user identification**.
 
 ---
 
-📅 **Last updated:** 2025-10-30  
-🧾 **Repository Contents:**  
-- `index.html` — Website homepage (dark theme, navigation)  
-- `assets/` — Images and static files  
-- `README.md` — Project documentation overview  
-
----
+<p align="center">
+  <sub>📅 Last updated: 2025-10-30 · Dept. of Information Systems, Hanyang University</sub><br>
+  <sub>💻 Repository Contents: <code>index.html</code> · <code>assets/</code> · <code>README.md</code></sub>
+</p>
