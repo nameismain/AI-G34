@@ -1,9 +1,9 @@
-# ITE351 – AI & Applications · Group 23
+# ITE351 – AI & Applications · Group 34
 
 Course project for Hanyang University (Fall 2025).
 
 ## Live Site
-https://nameismain.github.io/AI-G23/
+https://nameismain.github.io/AI-G34/
 
 ## What’s Inside
 - index.html: website homepage (dark theme, mini navigation)
