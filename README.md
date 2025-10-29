@@ -15,8 +15,8 @@ https://nameismain.github.io/AI-G23/
 
 ## Team
 - Minjin Kim (Dept. of Information Systems) idid02@hanyang.ac.kr
-- Taehyun Kim (Dept. of Computer Science)
-- Lison (Dept. of Information Systems)
-- Tom (Dept. of Information Systems)
+- Taehyun Kim (Dept. of Computer Science) tanggu01@connect.hku.hk
+- Lison OLYMPIE (Dept. of Computer Science) lsn.olmp@gmail.com
+- Tom Georgin (Dept. of Computer Science) tom@georgin.net
 
-Last updated: 2025-10-23
+Last updated: 2025-10-30
