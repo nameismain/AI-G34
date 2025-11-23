@@ -1,6 +1,6 @@
 <style>
 :root{
-  --bg:#0e1116; --panel:#121826; --text:#e5e7eb; --muted:#a1a1aa;
+  --bg:#0e11116; --panel:#121826; --text:#e5e7eb; --muted:#a1a1aa;
   --line:#1f2937; --accent1:#93c5fd; --accent2:#f0abfc; --accent3:#fb7185;
 }
 html{scroll-behavior:smooth}
@@ -15,21 +15,16 @@ h3{color:#cbd5e1; font-weight:600}
 a{color:var(--accent1); text-decoration:none}
 a:hover{color:#bfdbfe}
 .wrap{max-width:980px; margin:0 auto; padding:0 20px}
-/* mini nav */
 .nav{position:sticky; top:0; z-index:10; background:rgba(14,17,22,.85);
   backdrop-filter:saturate(120%) blur(4px); border-bottom:1px solid var(--line)}
 .nav-inner{max-width:980px; margin:0 auto; padding:10px 20px; display:flex; gap:14px; justify-content:center; align-items:center; font-weight:600; color:#d1d5db}
 .nav a{color:#d1d5db} .nav a:hover{color:#fff} .sep{color:#6b7280}
-/* section separator */
 hr{height:2px; border:0; margin:2.2em 0; background:linear-gradient(90deg, rgba(147,197,253,.4), rgba(240,171,252,.45), rgba(251,113,133,.35)); border-radius:2px}
-/* cards */
 .card{background:linear-gradient(to bottom right, var(--panel), var(--bg)); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02)}
-/* table */
 .table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px; border:1px solid var(--line)}
 .table th,.table td{padding:12px 14px; text-align:center; font-size:15px; border-bottom:1px solid var(--line)}
 .table th{background:linear-gradient(90deg, rgba(147,197,253,.12), rgba(240,171,252,.12)); color:#e2e8f0; font-weight:700}
 .table tr:nth-child(even){background:rgba(255,255,255,.02)} .table tr:hover{background:rgba(147,197,253,.06)}
-/* tech badges */
 .badges{text-align:center}
 .badge{
   display:inline-block; margin:6px; padding:10px 16px; font-size:14px; font-weight:700; letter-spacing:.2px;
@@ -39,10 +34,8 @@ hr{height:2px; border:0; margin:2.2em 0; background:linear-gradient(90deg, rgba(
 }
 .badge:hover{transform:translateY(-3px); background:linear-gradient(135deg, rgba(147,197,253,.35), rgba(240,171,252,.38)); box-shadow:0 14px 30px rgba(0,0,0,.5); border-color:rgba(148,163,184,.6)}
 .lead{font-size:16px; color:#d1d5db} .muted{color:#a1a1aa}
-/* spacing */
 .section{margin:1.2em 0} .header{text-align:center}
 </style>
-
 
 <div class="nav"><div class="nav-inner">
   <a href="#about">About</a><span class="sep">|</span>
@@ -61,27 +54,27 @@ hr{height:2px; border:0; margin:2.2em 0; background:linear-gradient(90deg, rgba(
   <div class="section" align="center">
     <h2 style="color:var(--accent1)">Project Overview</h2>
     <p class="lead">
-      Welcome to our official project space for the AI and Applications (ITE351) course at Hanyang University (Fall 2025).<br>
-      This site includes our member report (Task 1), GitHub Pages setup (Task 2), and initial research proposal (Task 3).<br>
-      The final project topic is currently under discussion and will be finalized after brainstorming and instructor feedback.
+      This website contains the project workspace for Group 34 in the AI and Applications course (ITE351).<br>
+      Our final project explores building a machine learning model that predicts whether a loan application<br>
+      will be approved or rejected based on applicant financial, demographic, and credit-related features.<br>
+      The dataset used is from Kaggle: Loan Approval Classification Data.
     </p>
   </div>
 
   <hr>
 
   <div id="proposal" class="section">
-    <h2 style="color:var(--accent2)">Project Proposal (Draft)</h2>
+    <h2 style="color:var(--accent2)">Project Proposal (Loan Approval Prediction)</h2>
     <div class="card">
       <p>
-        The <b>PureCare Air Purifier</b> project focuses on building an <b>AI-powered air purification system</b> that can
-        recognize and adapt to user health conditions through <b>audio-based symptom detection</b>.
-        Instead of reacting only to air quality metrics, the system learns from real-world cough and sneeze data
-        to proactively adjust fan speed, purification level, and mode settings.<br><br>
-        To achieve this, we are developing a robust <b>sound classification model</b> trained on diverse
-        indoor recordings under realistic conditions. Each dataset sample represents different noise levels,
-        distances, and body orientations to ensure adaptability to real household environments.<br><br>
-        Ultimately, PureCare aims to enable a <b>personalized, health-aware home environment</b>—a purifier that
-        not only improves air quality but also responds intelligently to each user’s physical condition.
+        The goal of this project is to build an AI-powered system that assists loan approval decisions by analyzing
+        applicant information such as income, credit score, employment history, education level, and past default records.
+        Financial institutions increasingly rely on data-driven systems to ensure fast, consistent, and fair evaluations.<br><br>
+        Using a structured dataset of 45,000 applicants, we perform exploratory data analysis, feature engineering, and model training
+        to understand which variables most strongly influence loan approval outcomes. Models such as Logistic Regression, Random Forest,
+        and XGBoost will be compared to evaluate performance and interpretability.<br><br>
+        Ultimately, this project aims to develop a reliable classification model and provide insight into how applicant characteristics influence
+        approval decisions in real-world loan screening scenarios.
       </p>
     </div>
   </div>
@@ -92,39 +85,30 @@ hr{height:2px; border:0; margin:2.2em 0; background:linear-gradient(90deg, rgba(
     <h2 style="color:var(--accent1)">Planned Methodology</h2>
     <div class="card">
       <ol>
-        <li><b>Audio Data Collection</b><br>
-          Following the protocol from <i>Acoustic Cues for Person Identification using Cough Sounds</i> (Tran et al.),
-          each participant records <b>40 ten-second audio samples</b> of coughs and sneezes across
-          <b>5 separate sessions</b> on different days.
-          Recordings vary by:
-          <ul>
-            <li>Physical activity level before recording (rest, after walking, running, or climbing stairs)</li>
-            <li>Distance and position from the fixed device (0–3m, multiple room angles)</li>
-            <li>Body orientation relative to the microphone</li>
-            <li>Indoor background noise (quiet, appliances, music, or open windows)</li>
-          </ul>
-          All recordings are performed indoors using <code>hardware/tools/audio_capture.py</code> with a stationary laptop simulating
-          a typical purifier location.
+        <li><b>Data Loading and Inspection</b><br>
+          Import dataset from Kaggle and examine entries, datatypes, missing values, and basic structure.
         </li><br>
-        <li><b>Metadata and Labeling</b><br>
-          Each sample is logged in a <code>notes.csv</code> file containing:<br>
-          <code>user_id, file_name, day, sample_no, is_cough, physical_activity, bg_noise, distance, cough_type</code><br>
-          Example entry:<br>
-          <code>M1US20-01, manual_save_time1761366192.csv, 0, 3, 1, rest, music+window, 2m, throat_clearing</code><br>
-          The dataset is designed to support <b>both symptom detection</b> and <b>user identification</b> research.
+        <li><b>Exploratory Data Analysis (EDA)</b><br>
+          Visualize numeric and categorical variables, study distributions, identify outliers,
+          analyze target imbalance, and explore correlations.
         </li><br>
-        <li><b>AI Model Development</b><br>
-          • <b>Sound Recognition:</b> CNN-based classifier trained on MFCC features to distinguish cough, sneeze, and background noise.<br>
-          • <b>Adaptive Control:</b> Regression or reinforcement model that adjusts purifier behavior automatically when symptoms are detected.<br>
-          • <b>User Identification:</b> Feature embedding and clustering to associate new cough samples with individual users.
+        <li><b>Preprocessing and Feature Engineering</b><br>
+          Handle outliers, encode categorical variables, scale numeric features,
+          and prepare training and test datasets.
         </li><br>
-        <li><b>Integration & Testing</b><br>
-          Deploy the trained models on a <b>Raspberry Pi 4</b> using <code>audio_capture.py</code> for continuous local inference.
-          Evaluate system accuracy, latency, and privacy-preserving performance in real indoor scenarios.
+        <li><b>Model Development</b><br>
+          Train and compare multiple machine learning models:<br>
+          • Logistic Regression<br>
+          • Random Forest Classifier<br>
+          • XGBoost Classifier<br>
+          Models will be evaluated based on accuracy, precision, recall, F1-score, and ROC-AUC.
         </li><br>
-        <li><b>Evaluation & Optimization</b><br>
-          Measure performance using detection accuracy, false positive rate, and energy efficiency.
-          Refine models through iterative retraining with newly collected real-world data.
+        <li><b>Model Evaluation and Interpretation</b><br>
+          Analyze feature importance, compare algorithms, and interpret key predictors such as credit score,
+          loan percent of income, and past default history.
+        </li><br>
+        <li><b>Documentation and Deployment</b><br>
+          Summarize findings, maintain GitHub repository structure, and prepare final report and presentation.
         </li>
       </ol>
     </div>
@@ -135,8 +119,14 @@ hr{height:2px; border:0; margin:2.2em 0; background:linear-gradient(90deg, rgba(
   <div class="section" align="center">
     <h2 style="color:var(--accent1)">Tech Stack</h2>
     <div class="badges">
-      <span class="badge">Figma</span><span class="badge">GitHub</span><span class="badge">Python</span>
-      <span class="badge">PyTorch</span><span class="badge">TensorFlow</span><span class="badge">Keras</span><span class="badge">MySQL</span>
+      <span class="badge">Python</span>
+      <span class="badge">Pandas</span>
+      <span class="badge">NumPy</span>
+      <span class="badge">Matplotlib</span>
+      <span class="badge">Seaborn</span>
+      <span class="badge">Scikit-Learn</span>
+      <span class="badge">XGBoost</span>
+      <span class="badge">GitHub</span>
     </div>
   </div>
 
@@ -160,11 +150,12 @@ hr{height:2px; border:0; margin:2.2em 0; background:linear-gradient(90deg, rgba(
     <h2 style="color:var(--accent1)">Progress Log</h2>
     <table class="table">
       <tr><th>Task</th><th>Description</th><th>Status</th></tr>
-      <tr><td>Task 1</td><td>Report group members</td><td>Completed</td></tr>
-      <tr><td>Task 2</td><td>Set up GitHub Pages blog</td><td>Completed</td></tr>
-      <tr><td>Task 3</td><td>Write initial research idea</td><td>In Progress</td></tr>
-      <tr><td>Task 4</td><td>Data exploration and modeling</td><td>Upcoming</td></tr>
-      <tr><td>Task 5</td><td>Final report and presentation</td><td>Pending</td></tr>
+      <tr><td>Task 1</td><td>Team member reporting</td><td>Completed</td></tr>
+      <tr><td>Task 2</td><td>GitHub Pages setup</td><td>Completed</td></tr>
+      <tr><td>Task 3</td><td>Research proposal draft</td><td>Completed</td></tr>
+      <tr><td>Task 4</td><td>Dataset exploration (EDA)</td><td>In Progress</td></tr>
+      <tr><td>Task 5</td><td>Modeling and evaluation</td><td>Upcoming</td></tr>
+      <tr><td>Task 6</td><td>Final report and presentation</td><td>Pending</td></tr>
     </table>
   </div>
 
@@ -173,14 +164,14 @@ hr{height:2px; border:0; margin:2.2em 0; background:linear-gradient(90deg, rgba(
   <div id="contact" class="section" align="center">
     <h2 style="color:var(--accent1)">Contact</h2>
     <div class="badges">
-      <a href="https://uumarina.notion.site/ITE351-AI-G23-29421a3bf8bb8038ad76edc5e289d9de?source=copy_link"><span class="badge" style="background:linear-gradient(135deg, rgba(2,6,23,.55), rgba(30,41,59,.55)); border-color:#334155">Notion</span></a>
+      <a href="https://uumarina.notion.site"><span class="badge" style="background:linear-gradient(135deg, rgba(2,6,23,.55), rgba(30,41,59,.55)); border-color:#334155">Notion</span></a>
       <a href="https://github.com/nameismain/AI-G34"><span class="badge" style="background:linear-gradient(135deg, rgba(251,113,133,.38), rgba(244,114,182,.34))">GitHub</span></a>
       <a href="#"><span class="badge" style="background:linear-gradient(135deg, rgba(147,197,253,.35), rgba(125,211,252,.28))">Youtube</span></a>
     </div>
   </div>
 
   <footer class="section muted">
-    Last Updated: October 30, 2025 - Hanyang University - Dept. of Information Systems
+    Last Updated: November 2025 - Hanyang University - Dept. of Information Systems
   </footer>
 </div>
 </body>
