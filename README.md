@@ -5,7 +5,7 @@ Short description: This repository contains a complete end-to-end machine learni
 
 **Project:** ITE351 Group 34 — Hanyang University (Fall 2025)
 
-[🌐 Live Site](https://nameismain.github.io/Loan-Approval-Prediction/) · [🧠 Notion Workspace](https://www.notion.so/taehyun-kim/ITE351-Group-Project-Blog-2b4098f461e08018a462e4bfd5797a25?source=copy_link)
+[Notion Workspace](https://www.notion.so/taehyun-kim/ITE351-Group-Project-Blog-2b4098f461e08018a462e4bfd5797a25?source=copy_link)
 
 ---
 
