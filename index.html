@@ -1,3 +1,229 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Loan Approval Prediction — Group 34 (ITE351)</title>
+  <style>
+  :root{
+    --bg:#0e1116; --panel:#121826; --text:#e5e7eb; --muted:#a1a1aa;
+    --line:#1f2937; --accent1:#93c5fd; --accent2:#f0abfc; --accent3:#fb7185;
+  }
+  html{scroll-behavior:smooth}
+  body{
+    margin:0; background:var(--bg); color:var(--text);
+    font-family:"Segoe UI","Apple SD Gothic Neo","Pretendard","Noto Sans KR",sans-serif;
+    line-height:1.8; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  }
+  h1,h2,h3{color:var(--text); letter-spacing:-0.2px}
+  h2{border-bottom:none; margin:0 0 .35em 0; font-weight:700}
+  h3{color:#cbd5e1; font-weight:600}
+  a{color:var(--accent1); text-decoration:none}
+  a:hover{color:#bfdbfe}
+  .wrap{max-width:980px; margin:0 auto; padding:0 20px}
+  .nav{position:sticky; top:0; z-index:10; background:rgba(14,17,22,.85);
+    backdrop-filter:saturate(120%) blur(4px); border-bottom:1px solid var(--line)}
+  .nav-inner{max-width:980px; margin:0 auto; padding:10px 20px; display:flex; gap:14px; justify-content:center; align-items:center; font-weight:600; color:#d1d5db}
+  .nav a{color:#d1d5db} .nav a:hover{color:#fff} .sep{color:#6b7280}
+  hr{height:2px; border:0; margin:2.2em 0; background:linear-gradient(90deg, rgba(147,197,253,.4), rgba(240,171,252,.45), rgba(251,113,133,.35)); border-radius:2px}
+  .card{background:linear-gradient(to bottom right, var(--panel), var(--bg)); border:1px solid var(--line); border-radius:16px; padding:20px; box-shadow:0 10px 30px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.02)}
+  .table{width:100%; border-collapse:collapse; overflow:hidden; border-radius:12px; border:1px solid var(--line)}
+  .table th,.table td{padding:12px 14px; text-align:center; font-size:15px; border-bottom:1px solid var(--line)}
+  .table th{background:linear-gradient(90deg, rgba(147,197,253,.12), rgba(240,171,252,.12)); color:#e2e8f0; font-weight:700}
+  .table tr:nth-child(even){background:rgba(255,255,255,.02)} .table tr:hover{background:rgba(147,197,253,.06)}
+  .badges{text-align:center}
+  .badge{
+    display:inline-block; margin:6px; padding:10px 16px; font-size:14px; font-weight:700; letter-spacing:.2px;
+    color:#f3f4f6; border-radius:999px; background:linear-gradient(135deg, rgba(147,197,253,.22), rgba(240,171,252,.24));
+    border:1px solid rgba(148,163,184,.35); box-shadow:0 8px 20px rgba(0,0,0,.35), inset 0 1px 0 rgba(255,255,255,.06);
+    backdrop-filter:saturate(120%) blur(2px); transition:transform .25s ease, box-shadow .25s ease, background .25s ease, border .25s ease
+  }
+  .badge:hover{transform:translateY(-3px); background:linear-gradient(135deg, rgba(147,197,253,.35), rgba(240,171,252,.38)); box-shadow:0 14px 30px rgba(0,0,0,.5); border-color:rgba(148,163,184,.6)}
+  .lead{font-size:16px; color:#d1d5db} .muted{color:#a1a1aa}
+  .section{margin:1.2em 0} .header{text-align:center}
+  pre{background:rgba(255,255,255,.02); padding:12px; border-radius:8px; overflow:auto}
+  </style>
+</head>
+<body>
+
+<div class="nav"><div class="nav-inner">
+  <a href="#overview">Overview</a><span class="sep">|</span>
+  <a href="#installation">Install</a><span class="sep">|</span>
+  <a href="#quick-start">Quick Start</a><span class="sep">|</span>
+  <a href="#results">Results</a><span class="sep">|</span>
+  <a href="#contact">Contact</a>
+</div></div>
+
+<div class="wrap">
+  <div class="section header">
+    <img src="https://capsule-render.vercel.app/api?type=waving&color=0:0f172a,100:111827&height=200&text=Loan%20Approval%20Prediction&fontColor=ffffff&fontSize=36&fontAlignY=40" alt="header">
+    <h3>ITE351 · Group 34 — Hanyang University</h3>
+  </div>
+
+  <hr>
+
+  <div id="overview" class="section">
+    <h2 style="color:var(--accent1)">Project Overview</h2>
+    <p class="lead">
+      This project provides an end-to-end machine learning pipeline to predict loan approval outcomes (approved = 1 / rejected = 0).
+      It includes exploratory data analysis, reproducible preprocessing, model training (Logistic Regression, Random Forest, XGBoost),
+      evaluation, and interpretability via SHAP. The repository also contains reproducible Jupyter notebooks and an academic-style report.
+    </p>
+  </div>
+
+  <hr>
+
+  <div class="section">
+    <h2 style="color:var(--accent2)">Key Features</h2>
+    <div class="card">
+      <ul style="padding-left:18px">
+        <li><b>Reproducible preprocessing:</b> missing value handling, encoding, scaling (<code>src/preprocessing.py</code>).</li>
+        <li><b>Modeling:</b> train and compare Logistic Regression, Random Forest, XGBoost (<code>src/train_model.py</code>).</li>
+        <li><b>Evaluation:</b> accuracy, precision, recall, F1, ROC-AUC and visualizations (<code>src/evaluate.py</code>).</li>
+        <li><b>Interpretability:</b> feature importance and SHAP analysis (<code>src/feature_importance.py</code>).</li>
+        <li><b>Notebooks:</b> step-by-step EDA → preprocessing → modeling → evaluation (<code>notebooks/</code>).</li>
+      </ul>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="data" class="section">
+    <h2 style="color:var(--accent1)">Data</h2>
+    <div class="card">
+      <p class="muted">Raw dataset: <code>data/raw/loan_data.csv</code></p>
+      <p class="muted">Processed artifacts: <code>data/processed/cleaned_data.csv</code>, <code>X_train.npy</code>, <code>X_test.npy</code>, <code>y_train.npy</code>, <code>y_test.npy</code></p>
+      <p>See <code>notebooks/02_preprocessing.ipynb</code> for column descriptions and preprocessing steps.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="project-structure" class="section">
+    <h2 style="color:var(--accent2)">Project Structure</h2>
+    <pre><code>loan-approval-prediction/
+├─ README.md
+├─ run.py                 # Orchestrator for the full pipeline
+├─ requirements.txt
+├─ data/
+│  ├─ raw/
+│  └─ processed/
+├─ notebooks/             # EDA / preprocessing / modeling / evaluation
+├─ src/                   # Reusable pipeline modules
+└─ results/               # Visualizations and metric outputs
+    </code></pre>
+  </div>
+
+  <hr>
+
+  <div id="installation" class="section">
+    <h2 style="color:var(--accent1)">Installation</h2>
+    <div class="card">
+      <ol>
+        <li>Create and activate a virtual environment
+          <pre><code>python3 -m venv venv
+source venv/bin/activate</code></pre>
+        </li>
+        <li>Install dependencies
+          <pre><code>pip install -r requirements.txt</code></pre>
+        </li>
+        <li>(macOS) Optional for XGBoost
+          <pre><code>brew install libomp</code></pre>
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="quick-start" class="section">
+    <h2 style="color:var(--accent2)">Quick Start</h2>
+    <div class="card">
+      <p>Run the full pipeline:</p>
+      <pre><code>python3 run.py</code></pre>
+      <p>or run specific modules:</p>
+      <pre><code>python3 src/train_model.py
+python3 src/evaluate.py</code></pre>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="results" class="section">
+    <h2 style="color:var(--accent1)">Results & Evaluation</h2>
+    <div class="card">
+      <p>Results are saved to <code>results/</code> (EDA figures, feature importance, metrics, SHAP plots).</p>
+      <table class="table">
+        <tr><th>Model</th><th>Accuracy</th><th>Precision</th><th>Recall</th><th>F1</th><th>ROC-AUC</th></tr>
+        <tr><td>Logistic Regression</td><td>0.899</td><td>0.785</td><td>0.749</td><td>0.767</td><td>0.956</td></tr>
+        <tr><td>Random Forest</td><td>0.930</td><td>0.900</td><td>0.770</td><td>0.830</td><td>0.974</td></tr>
+        <tr><td>XGBoost</td><td>0.934</td><td>0.896</td><td>0.796</td><td>0.843</td><td>0.979</td></tr>
+      </table>
+      <p class="muted">Best performing model: <b>XGBoost</b></p>
+      <p>Interpretability highlights: previous defaults, debt-to-income ratio (DTI), interest rate, income, and credit score are among the most influential features. SHAP visualizations are in <code>results/feature_importance/</code>.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="notebooks" class="section">
+    <h2 style="color:var(--accent2)">Notebooks & Documentation</h2>
+    <div class="card">
+      <p>Reproducible notebooks: <code>notebooks/01_eda.ipynb</code>, <code>02_preprocessing.ipynb</code>, <code>03_modeling.ipynb</code>, <code>04_evaluation.ipynb</code></p>
+      <p>Academic report: <code>docs/paper.tex</code>, <code>docs/paper.pdf</code></p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="team" class="section">
+    <h2 style="color:var(--accent1)">Team & Contact</h2>
+    <div class="card">
+      <ul style="list-style-type:disc; padding-left:18px">
+        <li>Minjin Kim</li>
+        <li>Taehyun Kim</li>
+        <li>Lison Olympie</li>
+        <li>Tom Georgin</li>
+      </ul>
+      <p class="muted">For questions, open an issue or contact the maintainers.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="contributing" class="section">
+    <h2 style="color:var(--accent2)">Contributing</h2>
+    <div class="card">
+      <p>Please report bugs or request features via issues. Code contributions are welcome via pull requests.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="license" class="section">
+    <h2 style="color:var(--accent1)">License</h2>
+    <div class="card">
+      <p>This repository is shared for educational purposes. Please contact the team before using code or data for commercial purposes.</p>
+    </div>
+  </div>
+
+  <hr>
+
+  <div id="contact" class="section" align="center">
+    <h2 style="color:var(--accent1)">External Links</h2>
+    <div class="badges">
+      <a href="https://www.notion.so/taehyun-kim/ITE351-Group-Project-Blog-2b4098f461e08018a462e4bfd5797a25?source=copy_link"><span class="badge" style="background:linear-gradient(135deg, rgba(2,6,23,.55), rgba(30,41,59,.55)); border-color:#334155">Notion</span></a>
+      <a href="https://github.com/nameismain/AI-G34"><span class="badge" style="background:linear-gradient(135deg, rgba(251,113,133,.38), rgba(244,114,182,.34))">GitHub</span></a>
+    </div>
+  </div>
+
+  <footer class="section muted">
+    Last Updated: November 2025 — Hanyang University — ITE351 Group 34
+  </footer>
+</div>
+
+</body>
+</html>
 <style>
 :root{
   --bg:#0e1116; --panel:#121826; --text:#e5e7eb; --muted:#a1a1aa;

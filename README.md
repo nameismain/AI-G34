@@ -1,125 +1,117 @@
-<h1 align="center">💳 Loan Approval Prediction · ML Classification Project</h1>
-<p align="center">
-  <b>ITE351 – AI & Applications · Group 34</b><br>
-  <i>Hanyang University, Fall 2025</i><br>
-  <a href="https://nameismain.github.io/AI-G34/">🌐 Live Site</a> · 
-  <a href="https://www.notion.so/taehyun-kim/ITE351-Group-Project-Blog-2b4098f461e08018a462e4bfd5797a25?source=copy_link">🧠 Notion Workspace</a>
-</p>
+
+# 📊 Loan Approval Prediction
+
+Short description: This repository contains a complete end-to-end machine learning pipeline for predicting loan approval outcomes (approved = 1 / rejected = 0). It includes EDA, preprocessing, model training (Logistic Regression, Random Forest, XGBoost), evaluation, interpretability (SHAP), and an academic-style report.
+
+**Project:** ITE351 Group 34 — Hanyang University (Fall 2025)
+
+[🌐 Live Site](https://nameismain.github.io/Loan-Approval-Prediction/) · [🧠 Notion Workspace](https://www.notion.so/taehyun-kim/ITE351-Group-Project-Blog-2b4098f461e08018a462e4bfd5797a25?source=copy_link)
 
 ---
 
-## 📌 Overview
-
-This project explores how machine learning can support loan approval decisions by analyzing financial, demographic, and credit-related information from applicants.
-
-Using a structured dataset of **45,000 records** from Kaggle  
-(“Loan Approval Classification Data”), we build and evaluate models that classify whether a loan application will be **approved (1)** or **rejected (0)**.
-
-> 🎯 *Goal: Understand which features matter most and build a reliable ML classifier for loan decisions.*
-
----
-
-## 🎯 Objectives
-
-- Perform **EDA** to understand the dataset and feature relationships  
-- Apply **preprocessing** including outlier handling, encoding, and scaling  
-- Train multiple **classification models**  
-- Compare performance using common ML metrics  
-- Interpret feature importance and relate results to real-world lending logic  
+## Table of Contents
+- [Key Features](#key-features)
+- [Data](#data)
+- [Project Structure](#project-structure)
+- [Installation](#installation)
+- [Quick Start](#quick-start)
+- [Reproducibility](#reproducibility)
+- [Results & Evaluation](#results--evaluation)
+- [Notebooks & Documentation](#notebooks--documentation)
+- [Team & Contact](#team--contact)
+- [Contributing](#contributing)
+- [License](#license)
 
 ---
 
-## 🧪 Methodology
+## Key Features
+- **Data loading & preprocessing:** Reproducible preprocessing pipeline including missing value handling, categorical encoding, and scaling (`src/preprocessing.py`).
+- **Model comparison:** Train and compare Logistic Regression, Random Forest, and XGBoost (`src/train_model.py`).
+- **Evaluation:** Common metrics (accuracy, precision, recall, F1, ROC-AUC) and visualizations (`src/evaluate.py`).
+- **Interpretability:** Feature importance and SHAP analysis to explain model predictions (`src/feature_importance.py`).
+- **Reproducible notebooks:** Step-by-step Jupyter notebooks for EDA → preprocessing → modeling → evaluation (`notebooks/`).
 
-### 1️⃣ Data Loading & Inspection
-- Load CSV dataset from Kaggle  
-- Examine structure, datatypes, missing values (none), and initial distributions  
-- Identify numeric vs. categorical features  
+## Data
+- Raw dataset: `data/raw/loan_data.csv`
+- Processed data: `data/processed/cleaned_data.csv`, `X_train.npy`, `X_test.npy`, `y_train.npy`, `y_test.npy`
 
-### 2️⃣ Exploratory Data Analysis (EDA)
-- Histogram and boxplot analysis  
-- Target variable imbalance check  
-- Categorical feature distributions  
-- Loan status by category (gender, education, home ownership, loan intent, defaults)  
-- Numeric feature comparison (income, credit score, loan amount, interest rate)  
-- Correlation heatmap  
+See `notebooks/02_preprocessing.ipynb` for column descriptions and preprocessing details.
 
-### 3️⃣ Preprocessing & Feature Engineering
-- Remove obviously unrealistic outliers (e.g., age > 100)  
-- Apply clipping to extreme values (income, loan amount)  
-- One-hot encode categorical variables  
-- Train-test split  
-- Optional normalization depending on algorithm  
-
-### 4️⃣ Model Development
-We evaluate several classifiers:
-
-| Model | Notes |
-|-------|--------|
-| Logistic Regression | Baseline linear model |
-| Random Forest | Non-linear, handles interactions well |
-| XGBoost | High performance gradient boosting model |
-
-Metrics used:  
-**Accuracy, Precision, Recall, F1-score, ROC-AUC**
-
-### 5️⃣ Evaluation & Interpretation
-- Compare model performance  
-- Analyze feature importance from tree-based models  
-- Key predictors include:  
-  - **Credit Score** (higher score → higher approval probability)  
-  - **Loan Percent Income** (higher ratio → more rejections)  
-  - **Past Defaults** (previous default almost always → rejection)  
-  - **Home Ownership**  
-
----
-
-## 📂 Repository Structure
+## Project Structure
 ```
 loan-approval-prediction/
-│── data/
-│   ├── raw/
-│   └── processed/
-│── notebooks/
-│   ├── 01_eda.ipynb
-│   ├── 02_preprocessing.ipynb
-│   ├── 03_modeling.ipynb
-│   └── 04_evaluation.ipynb
-│── src/
-│   ├── data_loader.py
-│   ├── preprocessing.py
-│   ├── train_model.py
-│   ├── evaluate.py
-│   └── utils.py
-│── results/
-│── models/
-│── README.md
-│── index.html
+├─ README.md
+├─ run.py                 # Orchestrator for the full pipeline
+├─ requirements.txt
+├─ data/
+│  ├─ raw/
+│  └─ processed/
+├─ notebooks/             # EDA / preprocessing / modeling / evaluation
+├─ src/                   # Reusable pipeline modules
+└─ results/               # Visualizations and metric outputs
 ```
 
-## 🧠 Tech Stack
+## Installation
+1. Create and activate a virtual environment
+```bash
+python3 -m venv venv
+source venv/bin/activate
+```
+2. Install dependencies
+```bash
+pip install -r requirements.txt
+```
+3. (Optional, macOS) If you plan to use XGBoost
+```bash
+brew install libomp
+```
 
-| Category | Tools |
-|----------|-------|
-| **Programming** | Python |
-| **Data Analysis** | pandas · NumPy |
-| **Visualization** | Matplotlib · Seaborn |
-| **Machine Learning** | Scikit-Learn · XGBoost |
-| **Dev / Docs** | GitHub · GitHub Pages · Notion |
+## Quick Start
+- Run the full pipeline
+```bash
+python3 run.py
+```
+This script runs data loading → preprocessing → model training → evaluation and saves artifacts (models: `models/`, visualizations: `results/`).
 
----
+- Run individual steps (for example, training or evaluation)
+```bash
+python3 src/train_model.py
+python3 src/evaluate.py
+```
 
-## 👥 Team 34
+## Reproducibility
+1. Set up the virtual environment and install dependencies
+2. Place the raw dataset at `data/raw/loan_data.csv`
+3. Run `python3 run.py` to produce `models/` and `results/`
 
-| Name | Department | Contact |
-|------|-------------|----------|
-| **Minjin Kim** | Information Systems | idid02@hanyang.ac.kr |
-| **Taehyun Kim** | Computer Science | tanggu01@connect.hku.hk |
-| **Lison Olympie** | Computer Science | lsn.olmp@gmail.com |
-| **Tom Georgin** | Computer Science | tom@georgin.net |
+Hyperparameters and additional options are available at the top of `src/train_model.py`.
 
----
+## Results & Evaluation
+- Results directory: `results/` (contains EDA figures, feature importance, metrics, etc.)
+- Summary performance:
 
-<p align="center">
-  <sub>📅 Last updated: November 2025</sub><br>
-</p>
+| Model | Accuracy | Precision | Recall | F1 | ROC-AUC |
+|------:|---------:|----------:|-------:|---:|--------:|
+| Logistic Regression | 0.899 | 0.785 | 0.749 | 0.767 | 0.956 |
+| Random Forest       | 0.930 | 0.900 | 0.770 | 0.830 | 0.974 |
+| XGBoost             | 0.934 | 0.896 | 0.796 | 0.843 | 0.979 |
+
+Best performing model: **XGBoost**
+
+Interpretability highlights: previous defaults, debt-to-income ratio (DTI), interest rate, income, and credit score are among the most influential features. SHAP visualizations are saved in `results/feature_importance/`.
+
+## Notebooks & Documentation
+- Reproducible notebooks: `notebooks/01_eda.ipynb`, `02_preprocessing.ipynb`, `03_modeling.ipynb`, `04_evaluation.ipynb`
+- Academic report (LaTeX): `docs/paper.tex`, PDF: `docs/paper.pdf`
+
+## Team & Contact
+- Group 34 — Hanyang University, ITE351
+- Team members: Minjin Kim, Taehyun Kim, Lison Olympie, Tom Georgin
+
+For project-related questions, please open an issue in this repository or contact the maintainers.
+
+## Contributing
+- Report bugs or request features via issues. Code contributions are welcome via pull requests.
+
+## License
+- This repository is shared for educational purposes. Please contact the team before using the code or data for commercial purposes.

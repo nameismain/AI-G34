@@ -1,0 +1,240 @@
+\documentclass[conference]{IEEEtran}
+
+% Packages
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{geometry}
+\usepackage{caption}
+\usepackage{subcaption}
+\usepackage{hyperref}
+\usepackage{float}
+\usepackage{multirow}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=blue,
+    urlcolor=blue,
+    citecolor=blue
+}
+
+\begin{document}
+
+\title{Loan Approval Prediction Using Explainable Machine Learning Models}
+
+\author{
+\IEEEauthorblockN{Minjin Kim, Taehyun Kim, Lison Olympie, Tom Georgin}
+\IEEEauthorblockA{
+Group 34, Hanyang University, Seoul, South Korea \\}
+}
+
+\maketitle
+
+\begin{abstract}
+Financial institutions increasingly rely on machine learning (ML) algorithms to evaluate creditworthiness and streamline loan approval processes. This study performs a comprehensive analysis of a structured loan application dataset containing 45,000 individuals, applying Logistic Regression, Random Forest, and XGBoost to predict loan approval outcomes. Extensive exploratory data analysis (EDA), preprocessing, feature engineering, and model evaluation were conducted. The best-performing model, XGBoost, achieved an AUC of 0.98. Beyond classification performance, we apply SHAP (SHapley Additive exPlanations) to provide instance-level and global interpretability of feature contributions. Our findings highlight previous loan defaults, interest rate, income, and debt-to-income ratio as key determinants of approval decisions. The study demonstrates the feasibility of using interpretable ML to support decision-making in real-world credit risk evaluation.
+\end{abstract}
+
+\begin{IEEEkeywords}
+Loan Approval Prediction, Machine Learning, XGBoost, Random Forest, SHAP, Explainable AI, Credit Risk
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Loan approval processes traditionally involve manual assessment of borrower profiles, making them slow, inconsistent, and resource-intensive. With the rise of machine learning, automated risk assessment systems have emerged as essential tools for modern financial institutions. These systems allow banks to evaluate applicants with greater speed, scalability, and objectivity.
+
+This study aims to build and analyze machine learning models that predict whether a loan application will be approved based on demographic, financial, and credit-related features. We also focus on model interpretability using SHAP to ensure transparency, fairness, and trustworthiness—key requirements in financial applications.
+
+\subsection{Research Questions}
+
+This study investigates the following questions:
+
+\begin{itemize}
+  \item Which applicant features most strongly influence loan approval?
+  \item How do traditional ML models perform on structured financial data?
+  \item Can SHAP improve interpretability for high-stakes decision-making?
+\end{itemize}
+
+\section{Related Work}
+
+Credit scoring and loan approval have long relied on statistical methods such as Logistic Regression. Recent advancements have introduced tree-based methods and ensemble learning, particularly Random Forest, Gradient Boosting, and XGBoost. Several works also highlight the importance of interpretability in financial ML due to fairness concerns, prompting the adoption of SHAP and LIME. Our study builds upon this literature by combining performance evaluation with explainability analysis.
+
+\section{Dataset Description}
+
+The dataset consists of 45,000 applicant records and 14 features extracted from a synthetic but realistic loan approval dataset published on Kaggle.
+
+\subsection{Feature Categories}
+
+\begin{itemize}
+    \item \textbf{Demographic:} age, gender, education level
+    \item \textbf{Financial:} annual income, loan amount, loan interest rate
+    \item \textbf{Credit History:} credit score, previous defaults, history length
+    \item \textbf{Loan Status (Target):} 1 = approved, 0 = rejected
+\end{itemize}
+
+No missing values were present. Some features exhibited outliers (e.g., age $>$ 100), requiring cleaning.
+
+\section{Exploratory Data Analysis}
+
+The dataset showed class imbalance, with approximately 33\% approvals and 67\% rejections. Income and loan amounts were right-skewed. Strong predictors included previous defaults and credit score. Full EDA figures are provided in the Appendix.
+
+\section{Methodology}
+
+\subsection{Preprocessing}
+
+\begin{itemize}
+  \item Removed unrealistic age values.
+  \item Applied One-Hot Encoding to categorical variables.
+  \item Standardized numeric variables.
+  \item Train-test split: 80/20.
+\end{itemize}
+
+\subsection{Models Trained}
+
+\begin{itemize}
+  \item Logistic Regression (baseline)
+  \item Random Forest (150 trees)
+  \item XGBoost (200 estimators, depth 6)
+\end{itemize}
+
+\subsection{Training Pipeline}
+
+\begin{algorithm}[H]
+\caption{Training Pipeline}
+\begin{algorithmic}
+\STATE Clean data
+\STATE Encode categorical features
+\STATE Scale numerical features
+\STATE Split into training and test sets
+\FOR{each model in \{LR, RF, XGB\}}
+  \STATE Train model
+  \STATE Save model with joblib
+\ENDFOR
+\end{algorithmic}
+\end{algorithm}
+
+\section{Results}
+
+\subsection{Classification Metrics}
+
+\begin{table}[H]
+\centering
+\begin{tabular}{lccccc}
+\toprule
+Model & Acc & Prec & Rec & F1 & AUC \\
+\midrule
+LR & 0.899 & 0.785 & 0.749 & 0.767 & 0.956 \\
+RF & 0.930 & 0.900 & 0.770 & 0.830 & 0.974 \\
+XGB & \textbf{0.934} & 0.896 & 0.796 & 0.843 & \textbf{0.979} \\
+\bottomrule
+\end{tabular}
+\caption{Performance comparison}
+\end{table}
+
+\subsection{ROC Curves}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{roc_curves.png}
+\caption{ROC curves for all models}
+\end{figure}
+
+\subsection{Confusion Matrices}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.48\linewidth]{confusion_matrix_logistic_regression.png}
+\includegraphics[width=0.48\linewidth]{confusion_matrix_random_forest.png}
+\includegraphics[width=0.48\linewidth]{confusion_matrix_xgboost.png}
+\caption{Confusion matrices for all models}
+\end{figure}
+
+\section{Explainability Analysis}
+
+\subsection{Feature Importance}
+
+Random Forest and XGBoost show similar high-impact features: debt-to-income ratio, loan interest rate, previous defaults, and income.
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{random_forest_importance.png}
+\caption{Random Forest Feature Importance}
+\end{figure}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{xgboost_importance.png}
+\caption{XGBoost Feature Importance}
+\end{figure}
+
+\subsection{SHAP Summary Analysis}
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=\linewidth]{shap_summary.png}
+\caption{SHAP Summary Plot}
+\end{figure}
+
+SHAP reveals:
+
+\begin{itemize}
+  \item \textbf{Previous defaults} dominate decision outcomes.
+  \item \textbf{Interest rate} negatively influences approval.
+  \item \textbf{Income} and \textbf{loan percent income} significantly shape predictions.
+  \item \textbf{Home ownership} conveys financial stability signals.
+\end{itemize}
+
+\section{Discussion}
+
+\subsection{Financial Interpretation}
+
+The model aligns well with actual lending guidelines: applicants with strong repayment history, stable income, and reasonable debt levels are likely to be approved. High interest rates and previous defaults strongly indicate risk, reducing approval probability.
+
+\subsection{Model Comparison}
+
+While Logistic Regression provides interpretable coefficients, tree-based methods outperform it significantly. XGBoost in particular captures non-linear patterns and interactions.
+
+\subsection{Ethical Considerations}
+
+ML-driven loan approval systems must ensure fairness and avoid discriminatory patterns. SHAP helps identify bias and supports transparent decision-making.
+
+\section{Conclusion}
+
+This study demonstrates the effectiveness of explainable ML models in loan approval prediction. XGBoost achieved the highest predictive performance (AUC = 0.98). SHAP analysis provided actionable interpretability insights, reinforcing trust in model-driven decisions.
+
+Future work includes hyperparameter optimization, class-balancing techniques, fairness analysis, and comparing more advanced algorithms such as LightGBM and CatBoost.
+
+\section*{Acknowledgment}
+
+We thank the ITE351 — AI \& Applications course instructors and teaching assistants for guidance and support.
+
+\begin{thebibliography}{00}
+
+\bibitem{shap}
+Lundberg, Scott M., and Su-In Lee. “A Unified Approach to Interpreting Model Predictions.” NIPS, 2017.
+
+\bibitem{xgboost}
+Chen, Tianqi, and Carlos Guestrin. “XGBoost: A Scalable Tree Boosting System.” KDD, 2016.
+
+\bibitem{credit}
+Thomas, L. C. “A Survey of Credit and Behavioural Scoring.” International Journal of Forecasting, 2000.
+
+\bibitem{fairness}
+Barocas, S., Hardt, M., and Narayanan, A. “Fairness in Machine Learning.” 2019.
+
+\end{thebibliography}
+
+\appendices
+\section{Additional EDA Figures}
+
+\subsection{Numerical Distributions}
+(Insert additional histograms here if desired.)
+
+\subsection{Categorical Distributions}
+(Insert additional bar plots.)
+
+\subsection{Correlation Heatmap}
+(Insert heatmap if needed.)
+
+\end{document}
