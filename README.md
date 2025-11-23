@@ -1,101 +1,118 @@
-<h1 align="center">💨 PureCare · AI-Driven Symptom-Responsive Air Purifier</h1>
+<h1 align="center">💳 Loan Approval Prediction · ML Classification Project</h1>
 <p align="center">
   <b>ITE351 – AI & Applications · Group 34</b><br>
   <i>Hanyang University, Fall 2025</i><br>
   <a href="https://nameismain.github.io/AI-G34/">🌐 Live Site</a> · 
-  <a href="https://uumarina.notion.site/">🧠 Notion Workspace</a>
+  <a href="https://www.notion.so/taehyun-kim/ITE351-Group-Project-Blog-2b4098f461e08018a462e4bfd5797a25?source=copy_link">🧠 Notion Workspace</a>
 </p>
 
 ---
 
-## 🌿 Overview
-**PureCare** is an AI-powered air purification system that listens, learns, and adapts.  
-Instead of merely reacting to air quality levels, it uses **audio-based symptom recognition** —  
-detecting coughs and sneezes to provide **personalized, health-aware air management**.
+## 📌 Overview
 
-> 🩺 Turning air purifiers into proactive wellness companions.
+This project explores how machine learning can support loan approval decisions by analyzing financial, demographic, and credit-related information from applicants.
+
+Using a structured dataset of **45,000 records** from Kaggle  
+(“Loan Approval Classification Data”), we build and evaluate models that classify whether a loan application will be **approved (1)** or **rejected (0)**.
+
+> 🎯 *Goal: Understand which features matter most and build a reliable ML classifier for loan decisions.*
 
 ---
 
 ## 🎯 Objectives
-- Develop an **AI model** capable of detecting coughs and sneezes in realistic indoor conditions.  
-- Learn **user-specific patterns** and link sound cues to health context.  
-- Automatically **adjust purification speed and mode** based on detected symptoms.  
-- Build an **edge-deployed prototype** using Raspberry Pi 4 for local, privacy-preserving inference.
+
+- Perform **EDA** to understand the dataset and feature relationships  
+- Apply **preprocessing** including outlier handling, encoding, and scaling  
+- Train multiple **classification models**  
+- Compare performance using common ML metrics  
+- Interpret feature importance and relate results to real-world lending logic  
 
 ---
 
-## 🧪 Planned Methodology
+## 🧪 Methodology
 
-### 1️⃣ Audio Data Collection
-Following *Acoustic Cues for Person Identification using Cough Sounds (Tran et al.)*  
-each participant records **40 ten-second samples** (coughs/sneezes) across **5 sessions** on different days.
+### 1️⃣ Data Loading & Inspection
+- Load CSV dataset from Kaggle  
+- Examine structure, datatypes, missing values (none), and initial distributions  
+- Identify numeric vs. categorical features  
 
-| Variable | Variations |
-|-----------|-------------|
-| **Physical State** | Rest · After walking · After running · After climbing stairs |
-| **Distance & Angle** | 0 – 3 m, multiple room positions |
-| **Body Orientation** | Facing / sideways / angled from mic |
-| **Environment** | Quiet · TV/music · Appliances · Open windows |
+### 2️⃣ Exploratory Data Analysis (EDA)
+- Histogram and boxplot analysis  
+- Target variable imbalance check  
+- Categorical feature distributions  
+- Loan status by category (gender, education, home ownership, loan intent, defaults)  
+- Numeric feature comparison (income, credit score, loan amount, interest rate)  
+- Correlation heatmap  
 
-> 🎙️ Recorded indoors using `hardware/tools/audio_capture.py`  
-> Device remains fixed to simulate a purifier placement.
+### 3️⃣ Preprocessing & Feature Engineering
+- Remove obviously unrealistic outliers (e.g., age > 100)  
+- Apply clipping to extreme values (income, loan amount)  
+- One-hot encode categorical variables  
+- Train-test split  
+- Optional normalization depending on algorithm  
 
----
+### 4️⃣ Model Development
+We evaluate several classifiers:
 
-### 2️⃣ Metadata & Labeling
-Each recording logged in **`notes.csv`** with:
-user_id, file_name, day, sample_no, is_cough, physical_activity, bg_noise, distance, cough_type
-Example:  
-`M1US20-01, manual_save_time1761366192.csv, 0, 3, 1, rest, music+window, 2m, throat_clearing`
+| Model | Notes |
+|-------|--------|
+| Logistic Regression | Baseline linear model |
+| Random Forest | Non-linear, handles interactions well |
+| XGBoost | High performance gradient boosting model |
 
-Dataset supports both **symptom detection** and **person-identification research**.
+Metrics used:  
+**Accuracy, Precision, Recall, F1-score, ROC-AUC**
 
----
-
-### 3️⃣ AI Model Development
-| Module | Description |
-|:--|:--|
-| **Sound Recognition** | CNN trained on MFCC features to classify cough/sneeze/background |
-| **Adaptive Control** | Regression / RL model to dynamically tune purifier speed and mode |
-| **User Identification** | Embedding + clustering to associate new coughs with existing users |
-
----
-
-### 4️⃣ Integration & Testing
-- Deploy trained models to **Raspberry Pi 4**  
-- Perform **local real-time inference** to ensure low latency and privacy  
-- Evaluate with real indoor recordings and live user interaction  
-
----
-
-### 5️⃣ Evaluation & Optimization
-| Metric | Description |
-|---------|-------------|
-| Accuracy | Symptom classification performance |
-| False Positives | Model reliability under background noise |
-| Latency | On-device inference time |
-| Energy Efficiency | Power use vs. baseline purifier |
-| User Feedback | Comfort / perceived responsiveness |
+### 5️⃣ Evaluation & Interpretation
+- Compare model performance  
+- Analyze feature importance from tree-based models  
+- Key predictors include:  
+  - **Credit Score** (higher score → higher approval probability)  
+  - **Loan Percent Income** (higher ratio → more rejections)  
+  - **Past Defaults** (previous default almost always → rejection)  
+  - **Home Ownership**  
 
 ---
+
+## 📂 Repository Structure
+```
+loan-approval-prediction/
+│── data/
+│   ├── raw/
+│   └── processed/
+│── notebooks/
+│   ├── 01_eda.ipynb
+│   ├── 02_preprocessing.ipynb
+│   ├── 03_modeling.ipynb
+│   └── 04_evaluation.ipynb
+│── src/
+│   ├── data_loader.py
+│   ├── preprocessing.py
+│   ├── train_model.py
+│   ├── evaluate.py
+│   └── utils.py
+│── results/
+│── models/
+│── README.md
+│── index.html
+```
 
 ## 🧠 Tech Stack
 
-| Category | Tools & Frameworks |
-|-----------|-------------------|
-| **AI / ML** | Python · TensorFlow · PyTorch · Keras |
-| **Signal Processing** | Librosa · NumPy · pandas |
-| **Hardware** | Raspberry Pi 4 · USB mic sensors |
-| **Frontend / Docs** | HTML · CSS (Dark Theme) · GitHub Pages · Figma |
-| **Collaboration** | Notion · GitHub · Google Drive |
+| Category | Tools |
+|----------|-------|
+| **Programming** | Python |
+| **Data Analysis** | pandas · NumPy |
+| **Visualization** | Matplotlib · Seaborn |
+| **Machine Learning** | Scikit-Learn · XGBoost |
+| **Dev / Docs** | GitHub · GitHub Pages · Notion |
 
 ---
 
 ## 👥 Team 34
 
 | Name | Department | Contact |
-|------|-------------|---------|
+|------|-------------|----------|
 | **Minjin Kim** | Information Systems | idid02@hanyang.ac.kr |
 | **Taehyun Kim** | Computer Science | tanggu01@connect.hku.hk |
 | **Lison Olympie** | Computer Science | lsn.olmp@gmail.com |
@@ -104,6 +121,5 @@ Dataset supports both **symptom detection** and **person-identification research
 ---
 
 <p align="center">
-  <sub>📅 Last updated: 2025-10-30 · Dept. of Information Systems, Hanyang University</sub><br>
-  <sub>💻 Repository Contents: <code>index.html</code> · <code>assets/</code> · <code>README.md</code></sub>
+  <sub>📅 Last updated: November 2025</sub><br>
 </p>
